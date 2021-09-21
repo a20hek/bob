@@ -55,7 +55,7 @@ function LandingPage() {
 					bgPosition='center'
 					bgRepeat='no-repeat'> */}
 				<Box bg='#635280' height='30vw' width='100%' maxHeight='330px'>
-					<Heading fontWeight='800' color='white' fontSize='4vw' ml={20} mt={10}>
+					<Heading fontWeight='800' color='white' fontSize='4vw' ml={10} mt={10}>
 						A Navi Mumbai based reading community started
 						<br />
 						By students,
