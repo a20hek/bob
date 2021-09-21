@@ -56,7 +56,7 @@ function LandingPage() {
 					bgRepeat='no-repeat'> */}
 				<Box bg='#635280' height='30vw' width='100%' maxHeight='330px'>
 					<Heading fontWeight='800' color='white' fontSize='4vw' ml={20} mt={10}>
-						A Navi Mumbai based book club started
+						A Navi Mumbai based reading community started
 						<br />
 						By students,
 						<br /> For students.

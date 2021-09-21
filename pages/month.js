@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
+import { createClient } from 'contentful';
+import NextImage from 'next/image';
 
 import {
 	Box,
@@ -26,18 +28,23 @@ import {
 	CloseButton,
 } from '@chakra-ui/react';
 
-const Card = (props) => {
-	return (
-		<Box bg={props.color} m={2} borderRadius='5px' w='100%' h='280px' p={2}>
-			<Heading fontSize='xl' fontWeight='500' opacity='0.9'>
-				{props.genre}
-			</Heading>
-			<Text>Learn More</Text>
-		</Box>
-	);
-};
+export async function getStaticProps() {
+	const client = createClient({
+		space: process.env.CONTENTFUL_SPACE_ID,
+		accessToken: process.env.CONTENTFUL_ACCESS_KEY,
+	});
 
-export default function Month() {
+	const res = await client.getEntries({ content_type: 'book' });
+
+	return {
+		props: {
+			books: res.items,
+		},
+	};
+}
+
+export default function Month({ books }) {
+	console.log(books);
 	return (
 		<Box>
 			<Box mr='5%' ml='5%'>
@@ -47,6 +54,36 @@ export default function Month() {
 					This Month&apos;s books
 				</Heading>
 			</Box>
+			<br />
+			<br />
+			{books.map((book) => (
+				<Box bg={book.fields.hexcolor} w='100%' h='280px' p={2} key={book.fields.genre}>
+					<Box mr='5%' ml='5%'>
+						<Heading fontSize='28px' fontWeight='bold' textDecorationLine='underline'>
+							{book.fields.genre}
+						</Heading>
+						<Flex mt='1%'>
+							<Image
+								alt='Fiction'
+								src={'https:' + book.fields.cover.fields.file.url}
+								width='auto'
+								height='200px'
+							/>
+							<Flex direction='column' mr='2%' ml='2%'>
+								<Heading fontSize='24px' fontWeight='bold'>
+									{book.fields.name}
+								</Heading>
+								<Text textTransform='uppercase' fontWeight='medium' mt='8px'>
+									{book.fields.author}
+								</Text>
+								<Text mt='24px' w='800px'>
+									{book.fields.excerpt.content[0].content[0].value}
+								</Text>
+							</Flex>
+						</Flex>
+					</Box>
+				</Box>
+			))}
 		</Box>
 	);
 }
