@@ -57,17 +57,27 @@ export default function Month({ books }) {
 			<br />
 			<br />
 			{books.map((book) => (
-				<Box bg={book.fields.hexcolor} w='100%' h='280px' p={2} key={book.fields.genre}>
+				<Box
+					bg={book.fields.hexcolor}
+					w='100%'
+					h='340px'
+					p={2}
+					key={book.fields.genre}
+					mb='80px'>
 					<Box mr='5%' ml='5%'>
-						<Heading fontSize='28px' fontWeight='bold' textDecorationLine='underline'>
+						<Heading
+							fontSize='28px'
+							fontWeight='bold'
+							textDecorationLine='underline'
+							mt='10px'>
 							{book.fields.genre}
 						</Heading>
-						<Flex mt='1%'>
+						<Flex mt='20px'>
 							<Image
 								alt='Fiction'
 								src={'https:' + book.fields.cover.fields.file.url}
 								width='auto'
-								height='200px'
+								height='240px'
 							/>
 							<Flex direction='column' mr='2%' ml='2%'>
 								<Heading fontSize='24px' fontWeight='bold'>
@@ -76,7 +86,7 @@ export default function Month({ books }) {
 								<Text textTransform='uppercase' fontWeight='medium' mt='8px'>
 									{book.fields.author}
 								</Text>
-								<Text mt='24px' w='800px'>
+								<Text mt='16px' w='800px'>
 									{book.fields.excerpt.content[0].content[0].value}
 								</Text>
 							</Flex>

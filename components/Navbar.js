@@ -49,7 +49,9 @@ export default function Navbar() {
 					<Button mr='60px' variant='ghost'>
 						Login
 					</Button>
-					<Button variant='outline'>Sign Up</Button>
+					<Button border='2px' bgColor='#ffffff' borderRadius='0px'>
+						Sign Up
+					</Button>
 				</Flex>
 			</Flex>
 		</Box>
