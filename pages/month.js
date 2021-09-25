@@ -59,12 +59,13 @@ export default function Month({ books }) {
 			<br />
 			{books.map((book) => (
 				<Box
+					id={book.fields.genre}
 					bg={book.fields.hexcolor}
 					w='100%'
 					h='340px'
 					p={2}
 					key={book.fields.genre}
-					mb='80px'>
+					mb='60px'>
 					<Box mr='5%' ml='5%'>
 						<Heading
 							fontSize='28px'

@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import NextLink from 'next/link';
 import {
 	Box,
 	Flex,
@@ -52,7 +53,7 @@ export default function About() {
 				<Text fontSize='36px' fontWeight='semibold'>
 					How is the BondingOverBindings Book Club like?
 				</Text>
-				<Text fontSize='20px' color='#635280'>
+				<Text fontSize='20px' color='#635280' onClick>
 					A group of people who come together to discuss the book they read.
 				</Text>
 				<br />
