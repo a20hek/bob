@@ -79,8 +79,6 @@ const Card = (props) => {
 };
 
 function LandingPage() {
-	const [display, setDisplay] = useState('none');
-	const { isOpen, onOpen, onClose } = useDisclosure();
 	const router = useRouter();
 
 	return (
@@ -96,7 +94,12 @@ function LandingPage() {
 					bgPosition='center'
 					bgRepeat='no-repeat'> */}
 					<Box bg='#635280' height='330px' width='100%' maxHeight='330px'>
-						<Heading fontWeight='800' color='white' fontSize='42px' ml={10} mt={10}>
+						<Heading
+							fontWeight='800'
+							color='white'
+							fontSize={['36px', '42px', '42px']}
+							ml={{ base: 5, lg: 10 }}
+							mt={{ base: 8, lg: 10 }}>
 							A Navi Mumbai based reading community started
 							<br />
 							By students,
@@ -112,24 +115,36 @@ function LandingPage() {
 						h='100%'
 						w='100%'
 						bgGradient='linear(360deg, #FFFFFF -2.7%, rgba(255, 255, 255, 0) 94.98%)'></Box>
-					<Text fontSize='36px' fontWeight='semibold'>
+					<Text
+						fontSize={{ base: '24px', sm: '32px', md: '36px', lg: '36px' }}
+						fontWeight='semibold'>
 						What is a book club?
 					</Text>
-					<Text fontSize='20px' color='#635280'>
+					<Text
+						fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '20px' }}
+						color='#635280'>
 						A group of people who come together to discuss the book they read.
 					</Text>
 					<br />
-					<Text fontSize='36px' fontWeight='semibold'>
+					<Text
+						fontSize={{ base: '24px', sm: '32px', md: '36px', lg: '36px' }}
+						fontWeight='semibold'>
 						How is the BondingOverBindings Book Club like?
 					</Text>
-					<Text fontSize='20px' color='#635280'>
+					<Text
+						fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '20px' }}
+						color='#635280'>
 						A group of people who come together to discuss the book they read.
 					</Text>
 					<br />
-					<Text fontSize='36px' fontWeight='semibold'>
+					<Text
+						fontSize={{ base: '24px', sm: '32px', md: '36px', lg: '36px' }}
+						fontWeight='semibold'>
 						What do I have to do?
 					</Text>
-					<Text fontSize='20px' color='#635280'>
+					<Text
+						fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '20px' }}
+						color='#635280'>
 						A group of people who come together to discuss the book they read.
 					</Text>
 					<br />
@@ -144,7 +159,8 @@ function LandingPage() {
 						borderRadius='0px'
 						bgColor='#635280'
 						textColor='#ffffff'
-						onClick={() => router.push('/about')}>
+						onClick={() => router.push('/about')}
+						_hover={{ bg: '#886FB4' }}>
 						Read More
 					</Button>
 				</Center>
@@ -153,14 +169,16 @@ function LandingPage() {
 				<br />
 				<br />
 
-				<Heading fontSize='42px'>Books selected for the Oct-Nov-Dec session :</Heading>
+				<Heading fontSize={{ base: '32px', sm: '36px', md: '42px', lg: '42px' }}>
+					Books selected for the Oct-Nov-Dec session :
+				</Heading>
 				<br />
 				<br />
 			</Box>
 			<Box bgColor='#445743' height='120px'>
 				<Flex w='100%' h='100%' align='center'>
 					<Text
-						fontSize='36px'
+						fontSize={{ base: '24px', sm: '32px', md: '36px', lg: '36px' }}
 						fontWeight='bold'
 						textDecoration='underline'
 						textColor='#ffffff'
@@ -178,9 +196,9 @@ function LandingPage() {
 						<Card genre='Fiction' color='#E7A7AA' id='fiction' />
 						<Card genre='Short Story Collection ' color='#99D2EF' id='shortstory' />
 						<Card genre='Fantasy' color='#8FBE8E' id='fantasy' />
-						<Card genre='Science Fiction' color='#FDD594' id='scifi' />
+						<Card genre='Graphic Novel' color='#FDD594' id='scifi' />
 						<Card genre='Socio Political' color='#B7EAC8' id='sopo' />
-						<Card genre='Graphic Novel' color='#ECA892' id='graphic' />
+						<Card genre='Technology' color='#ECA892' id='graphic' />
 						<Card
 							genre='Historical Fiction + Murder Mystery'
 							color='#EDC0EE'

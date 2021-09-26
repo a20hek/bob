@@ -11,15 +11,14 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../lib/auth';
+import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
 import GoogleIcon from './GoogleIcon';
 
 export default function Loginform() {
 	const [loading, setLoading] = useState(false);
 	const toast = useToast();
-	const auth = useAuth();
 
-	const { signinWithEmail } = useAuth();
+	const { signInWithEmailAndPassword, signInWithGoogle, authenticated } = useFirebaseAuth();
 
 	const {
 		register,
@@ -29,7 +28,7 @@ export default function Loginform() {
 
 	const loginuser = ({ email, pass }) => {
 		setLoading(true);
-		signinWithEmail(email, pass).catch((error) => {
+		signInWithEmailAndPassword(email, pass).catch((error) => {
 			setLoading(false);
 			toast({
 				title: 'An error occurred.',
@@ -99,7 +98,7 @@ export default function Loginform() {
 						<Button
 							fontSize={['sm', 'md', 'md']}
 							size='md'
-							onClick={() => auth.signinWithGoogle()}
+							onClick={() => signInWithGoogle()}
 							leftIcon={<GoogleIcon />}
 							w='60%'
 							mt={2}

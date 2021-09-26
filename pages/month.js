@@ -5,6 +5,9 @@ import { createClient } from 'contentful';
 import NextImage from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+//join
+//login
+
 import {
 	Box,
 	Flex,
@@ -51,7 +54,7 @@ export default function Month({ books }) {
 			<Box mr='5%' ml='5%'>
 				<Navbar />
 				<br />
-				<Heading fontWeight='bold' fontSize='5xl'>
+				<Heading fontWeight='bold' fontSize={{ base: '4xl', md: '5xl', lg: '5xl' }}>
 					This Month&apos;s books
 				</Heading>
 			</Box>
@@ -62,7 +65,7 @@ export default function Month({ books }) {
 					id={book.fields.genre}
 					bg={book.fields.hexcolor}
 					w='100%'
-					h='340px'
+					h='auto'
 					p={2}
 					key={book.fields.genre}
 					mb='60px'>
@@ -80,6 +83,7 @@ export default function Month({ books }) {
 								src={'https:' + book.fields.cover.fields.file.url}
 								width='auto'
 								height='240px'
+								mb={{ base: '0px', md: '24px', lg: '24px' }}
 							/>
 							<Flex direction='column' mr='2%' ml='2%'>
 								<Heading fontSize='24px' fontWeight='bold'>
@@ -88,12 +92,24 @@ export default function Month({ books }) {
 								<Text textTransform='uppercase' fontWeight='medium' mt='8px'>
 									{book.fields.author}
 								</Text>
-								<Text mt='16px' w='800px'>
+								<Text
+									mt='16px'
+									mb='16px'
+									display={{ base: 'none', md: 'block', lg: 'block' }}
+									w={{ base: 'auto', md: 'auto', lg: '1000px' }}>
 									{/* {book.fields.excerpt.content[0].content[0].value} */}
 									{documentToReactComponents(book.fields.excerpt)}
 								</Text>
 							</Flex>
 						</Flex>
+						<Text
+							mt='16px'
+							mb='16px'
+							display={{ base: 'block', md: 'none', lg: 'none' }}
+							w={{ base: 'auto', md: 'auto', lg: '800px' }}>
+							{/* {book.fields.excerpt.content[0].content[0].value} */}
+							{documentToReactComponents(book.fields.excerpt)}
+						</Text>
 					</Box>
 				</Box>
 			))}

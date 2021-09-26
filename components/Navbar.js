@@ -24,6 +24,8 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import Loginform from './Loginform';
+import Router from 'next/router';
 
 export default function Navbar() {
 	const [display, setDisplay] = useState('none');
@@ -31,7 +33,7 @@ export default function Navbar() {
 	return (
 		<Box>
 			<Flex justifyContent='space-between' h='70px'>
-				<Flex align='center' display={['none', 'none', 'flex']}>
+				<Flex align='center' display={{ base: 'none', sm: 'none', md: 'none', lg: 'flex' }}>
 					<NextLink href='/month' passHref>
 						<Link fontSize='16px' fontWeight='500' mr='60px'>
 							This Month&apos;s Books
@@ -53,7 +55,7 @@ export default function Navbar() {
 						/>
 					</NextLink>
 				</Flex>
-				<Flex align='center' display={['none', 'none', 'flex']}>
+				<Flex align='center' display={{ base: 'none', sm: 'none', md: 'none', lg: 'flex' }}>
 					<Button mr='60px' variant='ghost' onClick={onOpen}>
 						Login
 					</Button>
@@ -61,16 +63,18 @@ export default function Navbar() {
 						Sign Up
 					</Button>
 				</Flex>
-				<Flex align='center'>
-					<HamburgerIcon
-						h={8}
-						w={8}
-						size='4xl'
-						cursor='pointer'
-						display={['flex', 'flex', 'none']}
-						onClick={() => setDisplay('flex')}
-					/>
-				</Flex>
+
+				<HamburgerIcon
+					mt='auto'
+					mb='auto'
+					h={8}
+					w={8}
+					size='4xl'
+					cursor='pointer'
+					display={{ sm: 'flex', md: 'flex', lg: 'none' }}
+					onClick={() => setDisplay('flex')}
+					position=''
+				/>
 			</Flex>
 			<Flex
 				w='100vw'
@@ -104,7 +108,7 @@ export default function Navbar() {
 								color='white'
 								_hover={{ bg: '#222222' }}
 								colorScheme='blackAlpha'
-								onClick={() => router.push('/signup')}
+								onClick={() => Router.push('/signup')}
 								fontSize='2xl'>
 								Signup
 							</Button>
@@ -145,7 +149,9 @@ export default function Navbar() {
 								</Text>
 							</ModalHeader>
 							<ModalCloseButton />
-							<ModalBody>{/* <Loginform /> */}</ModalBody>
+							<ModalBody>
+								<Loginform />
+							</ModalBody>
 							<ModalFooter m='auto'>
 								<NextLink href='/signup'>
 									<Link>
