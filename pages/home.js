@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
+import LoggedInNav from '../components/LoggedInNav';
 import { createClient } from 'contentful';
 import NextImage from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import NextLink from 'next/link';
+import Footer from '../components/Footer';
 
 import {
 	Box,
@@ -49,9 +51,9 @@ export default function Month({ books }) {
 	return (
 		<Box>
 			<Box mr='5%' ml='5%'>
-				<Navbar />
+				<LoggedInNav />
 				<br />
-				<Heading fontWeight='bold' fontSize='5xl'>
+				<Heading fontWeight='bold' fontSize={{ base: '4xl', md: '5xl', lg: '5xl' }}>
 					This Month&apos;s books
 				</Heading>
 			</Box>
@@ -59,12 +61,13 @@ export default function Month({ books }) {
 			<br />
 			{books.map((book) => (
 				<Box
+					id={book.fields.genre}
 					bg={book.fields.hexcolor}
 					w='100%'
-					h='340px'
+					h='auto'
 					p={2}
 					key={book.fields.genre}
-					mb='80px'>
+					mb='60px'>
 					<Box mr='5%' ml='5%'>
 						<Heading
 							fontSize='28px'
@@ -75,27 +78,65 @@ export default function Month({ books }) {
 						</Heading>
 						<Flex mt='20px'>
 							<Image
-								alt='Fiction'
+								alt={book.fields.name}
 								src={'https:' + book.fields.cover.fields.file.url}
 								width='auto'
 								height='240px'
+								mb={{ base: '0px', md: '24px', lg: '24px' }}
 							/>
 							<Flex direction='column' mr='2%' ml='2%'>
-								<Heading fontSize='24px' fontWeight='bold'>
-									{book.fields.name}
-								</Heading>
+								<Flex w='100%' justifyContent='space-between'>
+									<Heading fontSize='24px' fontWeight='bold' mr='5%' maxW='400px'>
+										{book.fields.name}
+									</Heading>
+									<NextLink href={`/clubs/${book.fields.id}`}>
+										<Button
+											ml='5%'
+											bgColor='#635280'
+											textColor='#ffffff'
+											_hover={{ bg: '#886FB4' }}
+											display={{ base: 'none', md: 'block', lg: 'block' }}>
+											Know More
+										</Button>
+									</NextLink>
+								</Flex>
 								<Text textTransform='uppercase' fontWeight='medium' mt='8px'>
 									{book.fields.author}
 								</Text>
-								<Text mt='16px' w='800px'>
-									{/* {book.fields.excerpt.content[0].content[0].value} */}
+								<Text
+									mt='16px'
+									mb='16px'
+									display={{ base: 'none', md: 'block', lg: 'block' }}
+									w={{ base: 'auto', md: 'auto', lg: '70vw' }}>
 									{documentToReactComponents(book.fields.excerpt)}
 								</Text>
 							</Flex>
 						</Flex>
+						<Text
+							mt='16px'
+							mb='16px'
+							display={{ base: 'block', md: 'none', lg: 'none' }}
+							w={{ base: 'auto', md: 'auto', lg: '800px' }}>
+							{/* {book.fields.excerpt.content[0].content[0].value} */}
+							{documentToReactComponents(book.fields.excerpt)}
+						</Text>
+						<Center>
+							<NextLink href={`/clubs/${book.fields.id}`}>
+								<Button
+									ml='5%'
+									bgColor='#635280'
+									textColor='#ffffff'
+									_hover={{ bg: '#886FB4' }}
+									display={{ base: 'block', md: 'none', lg: 'none' }}
+									mb='24px'>
+									Know More
+								</Button>
+							</NextLink>
+						</Center>
 					</Box>
 				</Box>
 			))}
+			<Footer />
 		</Box>
 	);
 }

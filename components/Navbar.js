@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import {
 	Box,
 	Flex,
-	Heading,
 	Text,
-	Input,
-	Center,
 	Image,
-	SimpleGrid,
 	useDisclosure,
 	Link,
 	Button,
@@ -18,8 +14,6 @@ import {
 	ModalCloseButton,
 	ModalBody,
 	ModalFooter,
-	InputGroup,
-	InputLeftAddon,
 	CloseButton,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
@@ -59,7 +53,11 @@ export default function Navbar() {
 					<Button mr='60px' variant='ghost' onClick={onOpen}>
 						Login
 					</Button>
-					<Button border='2px' bgColor='#ffffff' borderRadius='0px'>
+					<Button
+						border='2px'
+						bgColor='#ffffff'
+						borderRadius='0px'
+						onClick={() => Router.push('/signup')}>
 						Sign Up
 					</Button>
 				</Flex>

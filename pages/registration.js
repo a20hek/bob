@@ -15,17 +15,18 @@ import {
 	Heading,
 } from '@chakra-ui/react';
 import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 export default function Registration() {
 	const [isLoggedin, setIsLoggedin] = useState(false);
-	const { uid, firestore } = useFirebaseAuth();
+	const { uid } = useFirebaseAuth();
 
 	const router = useRouter();
 
 	const { register, handleSubmit } = useForm();
 
-	function updatenameandcollege(uid, data) {
-		const userRef = doc(firestore, 'users', uid);
+	function updatenameandcollege(data, uid) {
+		const userRef = doc(db, 'users', uid);
 		return setDoc(userRef, data, { merge: true }).then(() => router.push('/home'));
 	}
 
@@ -79,7 +80,7 @@ export default function Registration() {
 							variant='outline'
 							textColor='#ffffff'
 							_hover={{ bg: '#13DA01' }}>
-							Next
+							Finish
 						</Button>
 					</Center>
 				</Stack>

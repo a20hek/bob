@@ -4,9 +4,8 @@ import Navbar from '../components/Navbar';
 import { createClient } from 'contentful';
 import NextImage from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-
-//join
-//login
+import { useRouter } from 'next/router';
+import Footer from '../components/Footer';
 
 import {
 	Box,
@@ -48,7 +47,7 @@ export async function getStaticProps() {
 }
 
 export default function Month({ books }) {
-	console.log(books);
+	const router = useRouter();
 	return (
 		<Box>
 			<Box mr='5%' ml='5%'>
@@ -62,7 +61,7 @@ export default function Month({ books }) {
 			<br />
 			{books.map((book) => (
 				<Box
-					id={book.fields.genre}
+					id={book.fields.id}
 					bg={book.fields.hexcolor}
 					w='100%'
 					h='auto'
@@ -86,9 +85,20 @@ export default function Month({ books }) {
 								mb={{ base: '0px', md: '24px', lg: '24px' }}
 							/>
 							<Flex direction='column' mr='2%' ml='2%'>
-								<Heading fontSize='24px' fontWeight='bold'>
-									{book.fields.name}
-								</Heading>
+								<Flex w='100%' justifyContent='space-between'>
+									<Heading fontSize='24px' fontWeight='bold' mr='5%' maxW='400px'>
+										{book.fields.name}
+									</Heading>
+									<Button
+										ml='5%'
+										bgColor='#635280'
+										textColor='#ffffff'
+										_hover={{ bg: '#886FB4' }}
+										onClick={() => router.push('/login')}
+										display={{ base: 'none', md: 'block', lg: 'block' }}>
+										Join the club
+									</Button>
+								</Flex>
 								<Text textTransform='uppercase' fontWeight='medium' mt='8px'>
 									{book.fields.author}
 								</Text>
@@ -96,7 +106,7 @@ export default function Month({ books }) {
 									mt='16px'
 									mb='16px'
 									display={{ base: 'none', md: 'block', lg: 'block' }}
-									w={{ base: 'auto', md: 'auto', lg: '1000px' }}>
+									w={{ base: 'auto', md: 'auto', lg: '70vw' }}>
 									{/* {book.fields.excerpt.content[0].content[0].value} */}
 									{documentToReactComponents(book.fields.excerpt)}
 								</Text>
@@ -110,9 +120,22 @@ export default function Month({ books }) {
 							{/* {book.fields.excerpt.content[0].content[0].value} */}
 							{documentToReactComponents(book.fields.excerpt)}
 						</Text>
+						<Center>
+							<Button
+								ml='5%'
+								bgColor='#635280'
+								textColor='#ffffff'
+								_hover={{ bg: '#886FB4' }}
+								onClick={() => router.push('/login')}
+								display={{ base: 'block', md: 'none', lg: 'none' }}
+								mb='24px'>
+								Join the club
+							</Button>
+						</Center>
 					</Box>
 				</Box>
 			))}
+			<Footer />
 		</Box>
 	);
 }

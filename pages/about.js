@@ -24,6 +24,7 @@ import {
 	InputLeftAddon,
 	CloseButton,
 } from '@chakra-ui/react';
+import Footer from '../components/Footer';
 
 export default function About() {
 	return (
@@ -107,7 +108,26 @@ export default function About() {
 				</Text>
 				<br />
 				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			</Box>
+			<Heading
+				fontWeight='bold'
+				fontSize={{ base: '3xl', md: '3xl', lg: '3xl' }}
+				mr='5%'
+				ml='5%'
+				color='#000'>
+				Contact Information:
+			</Heading>
+			<Text fontSize='20px' color='#635280' mr='5%' ml='5%'>
+				bondingoverbindingss@gmail.com <br />
+				amritha1352@gmail.com <br />
+				abbhishekk27@gmail.com
+			</Text>
+			<Footer />
 		</Box>
 	);
 }

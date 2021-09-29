@@ -6,11 +6,10 @@ import {
 	signOut,
 	GoogleAuthProvider,
 	signInWithPopup,
-	getIdToken,
 } from 'firebase/auth';
 
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, firestore } from '../lib/firebase';
+import { auth, db } from '../lib/firebase';
 
 import { useEffect, useState } from 'react';
 
@@ -76,10 +75,7 @@ export const useFirebaseAuth = () => {
 		return signInWithPopup(new GoogleAuthProvider()).then((response) => {
 			handleUser(response.user);
 
-			if (
-				firebase.auth().currentUser.metadata.creationTime ===
-				firebase.auth().currentUser.metadata.lastSignInTime
-			) {
+			if (auth.UserMetadata.creationTime === auth.UserMetadata.lastSignInTime) {
 				Router.push('/registration');
 			} else {
 				Router.push('/home');
@@ -88,11 +84,9 @@ export const useFirebaseAuth = () => {
 	};
 
 	const logout = () => {
-		return signOut(auth).then(() => handleUser(false));
+		Router.push('/');
+		return auth.signOut().then(() => handleUser(false));
 	};
-
-	const [uid, setUid] = useState(undefined);
-	auth.onAuthStateChanged((user) => setUid(user?.uid));
 
 	return {
 		authenticated,
@@ -101,12 +95,11 @@ export const useFirebaseAuth = () => {
 		signInWithEmailAndPassword,
 		signInWithGoogle,
 		logout,
-		uid,
 	};
 };
 
 export function createUser(uid, data) {
-	const userRef = doc(firestore, 'users', uid);
+	const userRef = doc(db, 'users', uid);
 	return setDoc(userRef, { uid, ...data }, { merge: true });
 }
 
