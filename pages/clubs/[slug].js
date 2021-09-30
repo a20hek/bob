@@ -58,7 +58,7 @@ export default function Clubspage({ books }) {
 	function updateclub(id, uid) {
 		const userRef = doc(db, 'users', uid);
 		console.log(id, uid);
-		return setDoc(userRef, id, { merge: true });
+		return setDoc(userRef, { id }, { merge: true });
 	}
 
 	console.log(uid, id);

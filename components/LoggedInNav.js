@@ -21,9 +21,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
-import { user, logout } from '../hooks/useFirebaseAuth';
+import { user, logOut } from '../hooks/useFirebaseAuth';
 
-export default function Navbar() {
+export default function LoginNavbar() {
 	const [result, setResult] = useState([]);
 	const uid = auth.currentUser?.uid;
 
@@ -101,7 +101,7 @@ export default function Navbar() {
 									<Center>
 										<Button
 											colorScheme='red'
-											onClick={() => logout()}
+											onClick={() => logOut()}
 											size='sm'
 											m={1}
 											variant='ghost'>
@@ -182,7 +182,7 @@ export default function Navbar() {
 										<Center>
 											<Button
 												colorScheme='red'
-												onClick={() => logout()}
+												onClick={() => logOut()}
 												size='sm'
 												m={1}
 												variant='ghost'>

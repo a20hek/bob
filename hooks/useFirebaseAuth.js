@@ -83,11 +83,11 @@ export const useFirebaseAuth = () => {
 		});
 	};
 
-	function logout() {
+	const logOut = () => {
 		return signOut(auth).then(() => {
 			handleUser(false);
 		});
-	}
+	};
 
 	const [uid, setUid] = useState(undefined);
 	auth.onAuthStateChanged((user) => setUid(user?.uid));
@@ -98,7 +98,7 @@ export const useFirebaseAuth = () => {
 		signUpWithEmailAndPassword,
 		signInWithEmailAndPassword,
 		signInWithGoogle,
-		logout,
+		logOut,
 		uid,
 	};
 };
