@@ -17,7 +17,7 @@ export default function Login() {
 				}}
 			/>
 			<Head>
-				<title>Login | Leetlinc</title>
+				<title>Login | Bonding over Bindings</title>
 			</Head>
 			<Box mt={20}>
 				<Center>

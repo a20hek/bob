@@ -18,7 +18,6 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 export default function Registration() {
-	const [isLoggedin, setIsLoggedin] = useState(false);
 	const { uid } = useFirebaseAuth();
 
 	const router = useRouter();

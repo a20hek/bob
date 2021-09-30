@@ -58,7 +58,7 @@ export default function Register() {
 				}}
 			/>
 			<Head>
-				<title>Signup | BondingOverBindings</title>
+				<title>Signup | Bonding over Bindings</title>
 			</Head>
 			<Box mt={20}>
 				<Center>
