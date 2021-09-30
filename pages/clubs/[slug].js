@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createClient } from 'contentful';
 import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/react';
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { db, auth } from '../../lib/firebase';
+import { doc, setDoc } from '@firebase/firestore';
+import { onAuthStateChanged } from '@firebase/auth';
+
+// import { uid } from '../../hooks/useFirebaseAuth';
 
 const client = createClient({
 	space: process.env.CONTENTFUL_SPACE_ID,
@@ -35,8 +40,27 @@ export async function getStaticProps({ params }) {
 	};
 }
 
-function clubspage({ books }) {
+export default function Clubspage({ books }) {
+	const [uid, setUid] = useState(undefined);
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUid(user.uid);
+			}
+		});
+	}, []);
+
 	console.log(books);
+	const id = books.fields.id;
+
+	function updateclub(id, uid) {
+		const userRef = doc(db, 'users', uid);
+		console.log(id, uid);
+		return setDoc(userRef, id, { merge: true });
+	}
+
+	console.log(uid, id);
 	return (
 		<Box bgColor={books.fields.hexcolor} minH='100vh'>
 			<Box mr='5%' ml='5%'>
@@ -93,12 +117,12 @@ function clubspage({ books }) {
 					</Flex>
 					<Center>
 						<Button
-							ml='5%'
 							bgColor='#635280'
 							textColor='#ffffff'
 							_hover={{ bg: '#886FB4' }}
 							mt='24px'
-							mb='24px'>
+							mb='24px'
+							onClick={() => updateclub(id, uid)}>
 							Join for this Book
 						</Button>
 					</Center>
@@ -157,5 +181,3 @@ function clubspage({ books }) {
 		</Box>
 	);
 }
-
-export default clubspage;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
@@ -14,7 +14,7 @@ import {
 	Container,
 	Heading,
 } from '@chakra-ui/react';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from '@firebase/firestore';
 import { db } from '../lib/firebase';
 
 export default function Registration() {

@@ -8,7 +8,7 @@ import {
 	signInWithPopup,
 } from 'firebase/auth';
 
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from '@firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
 import { useEffect, useState } from 'react';
@@ -83,10 +83,14 @@ export const useFirebaseAuth = () => {
 		});
 	};
 
-	const logout = () => {
-		Router.push('/');
-		return auth.signOut().then(() => handleUser(false));
-	};
+	function logout() {
+		return signOut(auth).then(() => {
+			handleUser(false);
+		});
+	}
+
+	const [uid, setUid] = useState(undefined);
+	auth.onAuthStateChanged((user) => setUid(user?.uid));
 
 	return {
 		authenticated,
@@ -95,6 +99,7 @@ export const useFirebaseAuth = () => {
 		signInWithEmailAndPassword,
 		signInWithGoogle,
 		logout,
+		uid,
 	};
 };
 

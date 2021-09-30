@@ -1,35 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { createClient } from 'contentful';
-import NextImage from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { useRouter } from 'next/router';
 import Footer from '../components/Footer';
 
-import {
-	Box,
-	Flex,
-	Heading,
-	Text,
-	Input,
-	Center,
-	Image,
-	SimpleGrid,
-	useDisclosure,
-	Link,
-	Button,
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalCloseButton,
-	ModalBody,
-	ModalFooter,
-	InputGroup,
-	InputLeftAddon,
-	CloseButton,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/react';
 
 export async function getStaticProps() {
 	const client = createClient({

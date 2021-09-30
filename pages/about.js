@@ -1,29 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import NextLink from 'next/link';
-import {
-	Box,
-	Flex,
-	Heading,
-	Text,
-	Input,
-	Center,
-	Image,
-	SimpleGrid,
-	useDisclosure,
-	Link,
-	Button,
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalCloseButton,
-	ModalBody,
-	ModalFooter,
-	InputGroup,
-	InputLeftAddon,
-	CloseButton,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Link } from '@chakra-ui/react';
 import Footer from '../components/Footer';
 
 export default function About() {
@@ -112,7 +90,6 @@ export default function About() {
 				<br />
 				<br />
 				<br />
-				<br />
 			</Box>
 			<Heading
 				fontWeight='bold'
@@ -127,6 +104,7 @@ export default function About() {
 				amritha1352@gmail.com <br />
 				abbhishekk27@gmail.com
 			</Text>
+			<br />
 			<Footer />
 		</Box>
 	);
