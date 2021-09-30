@@ -17,9 +17,9 @@ import {
 import NextLink from 'next/link';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { db, auth } from '../lib/firebase';
-import { onAuthStateChanged } from 'firebase/compat/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 
-import { collection, query, where, getDocs } from 'firebase/compat/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 import { user, logout } from '../hooks/useFirebaseAuth';
 

@@ -14,7 +14,7 @@ import {
 	Container,
 	Heading,
 } from '@chakra-ui/react';
-import { doc, setDoc } from 'firebase/compat/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 export default function Registration() {

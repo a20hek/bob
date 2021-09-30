@@ -6,9 +6,9 @@ import {
 	signOut,
 	GoogleAuthProvider,
 	signInWithPopup,
-} from 'firebase/compat/auth';
+} from 'firebase/auth';
 
-import { doc, setDoc } from 'firebase/compat/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
 import { useEffect, useState } from 'react';
