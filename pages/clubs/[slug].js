@@ -3,8 +3,8 @@ import { createClient } from 'contentful';
 import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/react';
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { db, auth, updateDoc, arrayUnion, arrayRemove } from '../../lib/firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { db, auth } from '../../lib/firebase';
+import { doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
 
