@@ -6,7 +6,7 @@ import {
 	signOut,
 	GoogleAuthProvider,
 	signInWithPopup,
-} from 'firebase/auth';
+} from '@firebase/auth';
 
 import { doc, setDoc } from '@firebase/firestore';
 import { auth, db } from '../lib/firebase';
