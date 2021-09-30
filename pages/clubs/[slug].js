@@ -3,7 +3,7 @@ import { createClient } from 'contentful';
 import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/react';
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { db, auth } from '../../lib/firebase';
+import { db, auth, updateDoc, arrayUnion, arrayRemove } from '../../lib/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
@@ -58,7 +58,10 @@ export default function Clubspage({ books }) {
 	function updateclub(id, uid) {
 		const userRef = doc(db, 'users', uid);
 		console.log(id, uid);
-		return setDoc(userRef, { id }, { merge: true });
+		// return setDoc(userRef, { id }, { merge: true });
+		return updateDoc(userRef, {
+			id: arrayUnion(id),
+		});
 	}
 
 	console.log(uid, id);
