@@ -42,6 +42,8 @@ export async function getStaticProps({ params }) {
 export default function Clubspage({ books }) {
 	const id = books.fields.id;
 	const [uid, setUid] = useState(undefined);
+	const [result, setResult] = useState([]);
+
 	const [btncolor, setBtncolor] = useState('#635280');
 	const [btntext, setBtntext] = useState('Join for this book');
 
@@ -52,10 +54,9 @@ export default function Clubspage({ books }) {
 		});
 	}
 
-	async function findClub(id, uid) {
-		const userRef = doc(db, 'users', uid);
+	async function Userdata(uid) {
+		const snapshot = await getDocs(query(collection(db, 'users'), where('uid', '==', uid)));
 		const results = [];
-		const snapshot = await getDocs(query(userRef, where('clubs', 'array-contains', { id })));
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
@@ -67,24 +68,19 @@ export default function Clubspage({ books }) {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
-				console.log(findClub(id, user.uid));
-				if (findClub(id, user.uid) == true) {
+				Userdata(user.uid).then(({ results }) => setResult(results));
+				if (result.length > 0) {
 					setBtncolor('#0EB500');
-					setBtntext('Joined for this Book');
+					setBtntext('Joined for this book');
 				}
 			}
 		});
 	}, []);
 
-	// console.log(books);
-
-	// useEffect(() => {
-	// 	onAuthStateChanged(auth, (user) => {
-	// 		if (user) {
-
-	// 		}
-	// 	});
-	// }, []);
+	if (result.length > 0) {
+		setBtncolor('#0EB500');
+		setBtntext('Joined for this book');
+	}
 
 	return (
 		<>
