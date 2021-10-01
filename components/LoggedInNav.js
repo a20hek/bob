@@ -21,9 +21,11 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
-import { user, logOut } from '../hooks/useFirebaseAuth';
+import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
 
 export default function LoginNavbar() {
+	const { logOut } = useFirebaseAuth();
+
 	const [result, setResult] = useState([]);
 	const uid = auth.currentUser?.uid;
 
