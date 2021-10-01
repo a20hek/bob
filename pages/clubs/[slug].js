@@ -4,11 +4,9 @@ import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/reac
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { db, auth } from '../../lib/firebase';
-import { doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, updateDoc, arrayUnion, query, where } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
-
-// import { uid } from '../../hooks/useFirebaseAuth';
 
 const client = createClient({
 	space: process.env.CONTENTFUL_SPACE_ID,
@@ -42,6 +40,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Clubspage({ books }) {
+	const id = books.fields.id;
 	const [uid, setUid] = useState(undefined);
 
 	useEffect(() => {
@@ -52,19 +51,23 @@ export default function Clubspage({ books }) {
 		});
 	}, []);
 
-	console.log(books);
-	const id = books.fields.id;
+	// console.log(books);
 
-	function updateclub(id, uid) {
+	function updateClub(id, uid) {
 		const userRef = doc(db, 'users', uid);
-		console.log(id, uid);
-		// return setDoc(userRef, { id }, { merge: true });
 		return updateDoc(userRef, {
-			id: arrayUnion(id),
+			clubs: arrayUnion(id),
 		});
 	}
 
-	console.log(uid, id);
+	function findClub(id, uid) {
+		const userRef = doc(db, 'users', uid);
+		return query(userRef, where('id', 'array-contains', { id }));
+	}
+
+	console.log(findClub(id, uid));
+
+	// console.log(uid, id);
 	return (
 		<>
 			<Head>
@@ -132,7 +135,7 @@ export default function Clubspage({ books }) {
 								_hover={{ bg: '#886FB4' }}
 								mt='24px'
 								mb='24px'
-								onClick={() => updateclub(id, uid)}>
+								onClick={() => updateClub(id, uid)}>
 								Join for this Book
 							</Button>
 						</Center>
