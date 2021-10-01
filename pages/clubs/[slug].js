@@ -68,6 +68,10 @@ export default function Clubspage({ books }) {
 			if (user) {
 				setUid(user.uid);
 			}
+			if (result[0].clubs.includes(id)) {
+				setBtncolor('#0EB500');
+				setBtntext('Joined for this club');
+			}
 		});
 	}, []);
 
