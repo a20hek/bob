@@ -84,9 +84,11 @@ export const useFirebaseAuth = () => {
 	};
 
 	const logOut = () => {
-		return signOut(auth).then(() => {
-			handleUser(false);
-		});
+		return signOut(auth)
+			.then(() => {
+				handleUser(false);
+			})
+			.then(Router.push('/'));
 	};
 
 	const [uid, setUid] = useState(undefined);
