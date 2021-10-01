@@ -4,7 +4,7 @@ import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/reac
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { db, auth } from '../../lib/firebase';
-import { doc, updateDoc, arrayUnion, query, where } from 'firebase/firestore';
+import { doc, updateDoc, arrayUnion, query, where, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
 
@@ -42,16 +42,8 @@ export async function getStaticProps({ params }) {
 export default function Clubspage({ books }) {
 	const id = books.fields.id;
 	const [uid, setUid] = useState(undefined);
-
-	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				setUid(user.uid);
-			}
-		});
-	}, []);
-
-	// console.log(books);
+	const [btncolor, setBtncolor] = useState('#635280');
+	const [btntext, setBtntext] = useState('Join for this book');
 
 	function updateClub(id, uid) {
 		const userRef = doc(db, 'users', uid);
@@ -60,14 +52,39 @@ export default function Clubspage({ books }) {
 		});
 	}
 
-	function findClub(id, uid) {
+	async function findClub(id, uid) {
 		const userRef = doc(db, 'users', uid);
-		return query(userRef, where('id', 'array-contains', { id }));
+		const results = [];
+		const snapshot = await getDocs(query(userRef, where('id', 'array-contains', { id })));
+		snapshot.forEach((doc) => {
+			results.push({ id: doc.id, ...doc.data() });
+		});
+		if (results.length > 0) return true;
+		else return false;
 	}
 
-	console.log(findClub(id, uid));
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUid(user.uid);
+				if (findClub(id, user.uid)) {
+					setBtncolor('#0EB500');
+					setBtntext('Joined for this Book');
+				}
+			}
+		});
+	}, []);
 
-	// console.log(uid, id);
+	// console.log(books);
+
+	// useEffect(() => {
+	// 	onAuthStateChanged(auth, (user) => {
+	// 		if (user) {
+
+	// 		}
+	// 	});
+	// }, []);
+
 	return (
 		<>
 			<Head>
@@ -181,12 +198,12 @@ export default function Clubspage({ books }) {
 						<Center>
 							<Button
 								ml='5%'
-								bgColor='#635280'
+								bgColor={btncolor}
 								textColor='#ffffff'
 								_hover={{ bg: '#886FB4' }}
 								mt='24px'
 								mb='24px'>
-								Join for this Book
+								{btntext}
 							</Button>
 						</Center>
 					</Box>
