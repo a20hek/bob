@@ -35,7 +35,7 @@ export default function LoginNavbar() {
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
-		console.log({ results });
+		console.log(results);
 		return { results };
 	}
 

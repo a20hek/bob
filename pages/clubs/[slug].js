@@ -60,8 +60,7 @@ export default function Clubspage({ books }) {
 			results.push({ id: doc.id, ...doc.data() });
 		});
 		console.log(results);
-		if (results.length > 0) return true;
-		else return false;
+		return { results };
 	}
 
 	useEffect(() => {
