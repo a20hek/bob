@@ -68,6 +68,7 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
+				setUid(user.uid);
 				Userdata(user.uid).then(({ results }) => setResult(results));
 			}
 		});
@@ -80,7 +81,6 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				setUid(user.uid);
 				if (bookclubs.includes(id) == true) {
 					setBtncolor('#0EB500');
 					setBtntext('Joined for this club');
