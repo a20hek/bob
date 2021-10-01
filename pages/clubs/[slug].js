@@ -67,7 +67,7 @@ export default function Clubspage({ books }) {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
-				if (findClub(id, user.uid)) {
+				if (findClub(id, user.uid) == true) {
 					setBtncolor('#0EB500');
 					setBtntext('Joined for this Book');
 				}
