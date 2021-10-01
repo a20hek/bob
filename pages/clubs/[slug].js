@@ -67,7 +67,6 @@ export default function Clubspage({ books }) {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
-				findClub(id, user.uid).then(({ results }) => setResult(results));
 			}
 		});
 	}, []);
@@ -75,13 +74,12 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				if (result.length > 0) {
-					setBtncolor('#0EB500');
-					setBtntext('Joined for this book');
-				}
+				findClub(id, user.uid).then(({ results }) => setResult(results));
 			}
 		});
 	}, []);
+
+	console.log(result);
 
 	// console.log(books);
 
