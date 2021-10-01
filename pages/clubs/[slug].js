@@ -41,6 +41,7 @@ export async function getStaticProps({ params }) {
 
 export default function Clubspage({ books }) {
 	const id = books.fields.id;
+	const [result, setResult] = useState([]);
 	const [uid, setUid] = useState(undefined);
 	const [btncolor, setBtncolor] = useState('#635280');
 	const [btntext, setBtntext] = useState('Join for this book');
