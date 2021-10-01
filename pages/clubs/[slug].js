@@ -55,7 +55,7 @@ export default function Clubspage({ books }) {
 	async function findClub(id, uid) {
 		const userRef = doc(db, 'users', uid);
 		const results = [];
-		const snapshot = await getDocs(query(userRef, where('id', 'array-contains', { id })));
+		const snapshot = await getDocs(query(userRef, where('clubs', 'array-contains', { id })));
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
