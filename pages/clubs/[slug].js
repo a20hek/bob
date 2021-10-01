@@ -68,11 +68,7 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				setUid(user.uid);
-				if (result[0].clubs.includes(id) == true) {
-					setBtncolor('#0EB500');
-					setBtntext('Joined for this club');
-				}
+				Userdata(user.uid).then(({ results }) => setResult(results));
 			}
 		});
 	}, []);
@@ -80,7 +76,13 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				Userdata(user.uid).then(({ results }) => setResult(results));
+				setUid(user.uid);
+				const bookclubs = result[0].clubs;
+				console.log(bookclubs);
+				if (bookclubs.includes(id) == true) {
+					setBtncolor('#0EB500');
+					setBtntext('Joined for this club');
+				}
 			}
 		});
 	}, []);
