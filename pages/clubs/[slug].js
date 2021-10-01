@@ -59,6 +59,7 @@ export default function Clubspage({ books }) {
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
+		console.log(findClub(id, uid));
 		if (results.length > 0) return true;
 		else return false;
 	}
@@ -67,6 +68,7 @@ export default function Clubspage({ books }) {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
+				console.log(findClub(id, user.uid));
 				if (findClub(id, user.uid) == true) {
 					setBtncolor('#0EB500');
 					setBtntext('Joined for this Book');
