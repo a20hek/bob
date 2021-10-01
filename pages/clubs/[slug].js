@@ -68,7 +68,7 @@ export default function Clubspage({ books }) {
 			if (user) {
 				setUid(user.uid);
 			}
-			if (result[0].clubs.includes({ id })) {
+			if (result[0].clubs.includes({ id }) == true) {
 				setBtncolor('#0EB500');
 				setBtntext('Joined for this club');
 			}
