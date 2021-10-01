@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from 'contentful';
-import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Center, Image, Button, useToast } from '@chakra-ui/react';
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { db, auth } from '../../lib/firebase';
@@ -46,6 +46,8 @@ export default function Clubspage({ books }) {
 	const [btncolor, setBtncolor] = useState('#635280');
 	const [btntext, setBtntext] = useState('Join for this book');
 
+	const toast = useToast();
+
 	function updateClub(id, uid) {
 		const userRef = doc(db, 'users', uid);
 		return updateDoc(userRef, {
@@ -67,10 +69,10 @@ export default function Clubspage({ books }) {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
-			}
-			if (result[0].clubs.includes(id) == true) {
-				setBtncolor('#0EB500');
-				setBtntext('Joined for this club');
+				if (result[0].clubs.includes(id) == true) {
+					setBtncolor('#0EB500');
+					setBtntext('Joined for this club');
+				}
 			}
 		});
 	}, []);
