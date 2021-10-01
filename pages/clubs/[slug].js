@@ -53,10 +53,9 @@ export default function Clubspage({ books }) {
 		});
 	}
 
-	async function findClub(id, uid) {
-		const userRef = doc(db, 'users', uid);
+	async function Userdata(uid) {
+		const snapshot = await getDocs(query(collection(db, 'users'), where('uid', '==', uid)));
 		const results = [];
-		const snapshot = await getDocs(query(userRef, where('clubs', 'array-contains', { id })));
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
@@ -75,22 +74,12 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				findClub(id, user.uid).then(({ results }) => setResult(results));
+				Userdata(user.uid).then(({ results }) => setResult(results));
 			}
 		});
 	}, []);
 
 	console.log(result);
-
-	// console.log(books);
-
-	// useEffect(() => {
-	// 	onAuthStateChanged(auth, (user) => {
-	// 		if (user) {
-
-	// 		}
-	// 	});
-	// }, []);
 
 	return (
 		<>
@@ -154,13 +143,13 @@ export default function Clubspage({ books }) {
 						</Flex>
 						<Center>
 							<Button
-								bgColor='#635280'
+								bgColor={btncolor}
 								textColor='#ffffff'
 								_hover={{ bg: '#886FB4' }}
 								mt='24px'
 								mb='24px'
 								onClick={() => updateClub(id, uid)}>
-								Join for this Book
+								{btntext}
 							</Button>
 						</Center>
 					</Box>
