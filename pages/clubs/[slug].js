@@ -59,7 +59,7 @@ export default function Clubspage({ books }) {
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
-		console.log(findClub(id, uid));
+		console.log(results);
 		if (results.length > 0) return true;
 		else return false;
 	}
