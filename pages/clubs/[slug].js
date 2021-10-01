@@ -4,7 +4,7 @@ import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/reac
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { db, auth } from '../../lib/firebase';
-import { doc, updateDoc, arrayUnion, query, where, getDocs } from 'firebase/firestore';
+import { doc, updateDoc, arrayUnion, query, where, getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
 
