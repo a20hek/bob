@@ -77,10 +77,9 @@ export default function Clubspage({ books }) {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				if (result.length > 0) {
-					const bookclubs = result[0].clubs;
-					console.log(bookclubs);
-					if (bookclubs.includes({ id }) == true) {
+				if (result.length != 0) {
+					console.log(result[0].clubs);
+					if (result[0].clubs.includes({ id }) == true) {
 						setBtncolor('#0EB500');
 						setBtntext('Joined for this club');
 					}
