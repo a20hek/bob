@@ -98,6 +98,7 @@ export default function About() {
 					<br />
 				</Box>
 				<Heading
+					as='u'
 					fontWeight='bold'
 					fontSize={{ base: '3xl', md: '3xl', lg: '3xl' }}
 					mr='5%'

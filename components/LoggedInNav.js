@@ -35,7 +35,6 @@ export default function LoginNavbar() {
 		snapshot.forEach((doc) => {
 			results.push({ id: doc.id, ...doc.data() });
 		});
-		console.log();
 		return { results };
 	}
 
@@ -46,10 +45,6 @@ export default function LoginNavbar() {
 			}
 		});
 	}, []);
-
-	// useEffect(() => {
-	// 	console.log(uid, result);
-	// }, [uid, result]);
 
 	const [display, setDisplay] = useState('none');
 	return (
@@ -92,9 +87,6 @@ export default function LoginNavbar() {
 										<Flex direction='column' w='100%' align='flex-start'>
 											<Text fontSize='16px' fontWeight='500'>
 												{result[0].name}
-											</Text>
-											<Text fontSize='14px' fontWeight='300'>
-												{result[0].college}
 											</Text>
 										</Flex>
 										<AccordionIcon h='48px' />
@@ -163,9 +155,6 @@ export default function LoginNavbar() {
 								m={5}>
 								<Text fontSize='2xl' color='white' pr={2} pl={2}>
 									{result[0].name}
-								</Text>
-								<Text fontSize='lg' color='white' pr={2} pl={2}>
-									{result[0].college}
 								</Text>
 							</Flex>
 						)}

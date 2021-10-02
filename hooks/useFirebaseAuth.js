@@ -25,10 +25,8 @@ export const useFirebaseAuth = () => {
 		if (rawUser) {
 			const user = await formatUser(rawUser);
 			const { token, ...userWithoutToken } = user;
-
 			createUser(user.uid, userWithoutToken);
 			setUser(user);
-
 			cookie.set('bob-auth', true, {
 				expires: 1,
 			});

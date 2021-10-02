@@ -26,7 +26,6 @@ export async function getStaticProps() {
 }
 
 export default function Month({ books }) {
-	console.log(books);
 	const { authenticated } = useFirebaseAuth();
 
 	return (
