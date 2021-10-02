@@ -4,10 +4,11 @@ import { Box, Flex, Heading, Text, Center, Image, Button, useToast } from '@chak
 import LoggedInNav from '../../components/LoggedInNav';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { db, auth } from '../../lib/firebase';
-import { doc, updateDoc, arrayUnion, query, where, getDocs, collection } from 'firebase/firestore';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import Head from 'next/head';
 import { useFirebaseAuth } from '../../hooks/useFirebaseAuth';
+import NotLoggedin from '../../components/NotLoggedin';
 
 const client = createClient({
 	space: process.env.CONTENTFUL_SPACE_ID,
@@ -220,7 +221,7 @@ export default function Clubspage({ books }) {
 					</Box>
 				</>
 			) : (
-				<div>null</div>
+				<NotLoggedin />
 			)}
 		</>
 	);

@@ -26,6 +26,15 @@ export default function Month({ books }) {
 	const router = useRouter();
 	return (
 		<>
+			<script
+				dangerouslySetInnerHTML={{
+					__html: `
+		  if (document.cookie && document.cookie.includes('bob-auth')) {
+			window.location.href = "/home"
+		  }
+		`,
+				}}
+			/>
 			<Head>
 				<title>This Month&apos;s books | Bonding over Bindings</title>
 			</Head>
