@@ -74,10 +74,6 @@ export default function Clubspage({ books }) {
 		});
 	}, []);
 
-	console.log(result);
-	const bookclubs = result[0].clubs;
-	console.log(bookclubs);
-
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
