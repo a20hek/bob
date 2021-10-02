@@ -84,11 +84,9 @@ export default function LoginNavbar() {
 							<AccordionItem>
 								<AccordionButton>
 									<Flex justifyContent='space-between' w='100%'>
-										<Flex direction='column' w='100%' align='flex-start'>
-											<Text fontSize='16px' fontWeight='500'>
-												{result[0].name}
-											</Text>
-										</Flex>
+										<Text fontSize='16px' fontWeight='500'>
+											{result[0].name}
+										</Text>
 										<AccordionIcon h='48px' />
 									</Flex>
 								</AccordionButton>
