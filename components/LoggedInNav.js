@@ -155,46 +155,19 @@ export default function LoginNavbar() {
 				<Flex direction='column' align='center'>
 					<Flex align='center'>
 						{result.length > 0 && (
-							<Accordion
-								// w={{ base: '180px', sm: '240px', md: '240px', lg: '240px' }}
-								w='240px'
-								// h={{ base: '60px', sm: '60px' }}
-								bg='#ffffff'
-								borderRadius='10px'
-								// m={[1, 5, 5]}
-								allowToggle
-								// position='absolute'
-								// top='24px'
-								// right='5%'
-								zIndex='9999'>
-								<AccordionItem>
-									<AccordionButton>
-										<Flex justifyContent='space-between' w='100%'>
-											<Flex direction='column' w='100%' align='flex-start'>
-												<Text fontSize='16px' fontWeight='500'>
-													{result[0].name}
-												</Text>
-												<Text fontSize='14px' fontWeight='300'>
-													{result[0].college}
-												</Text>
-											</Flex>
-											<AccordionIcon h='48px' />
-										</Flex>
-									</AccordionButton>
-									<AccordionPanel>
-										<Center>
-											<Button
-												colorScheme='red'
-												onClick={() => logOut()}
-												size='sm'
-												m={1}
-												variant='ghost'>
-												Logout
-											</Button>
-										</Center>
-									</AccordionPanel>
-								</AccordionItem>
-							</Accordion>
+							<Flex
+								direction='column'
+								border='1px'
+								borderColor='white'
+								borderRadius={5}
+								m={5}>
+								<Text fontSize='2xl' color='white' pr={2} pl={2}>
+									{result[0].name}
+								</Text>
+								<Text fontSize='lg' color='white' pr={2} pl={2}>
+									{result[0].college}
+								</Text>
+							</Flex>
 						)}
 					</Flex>
 					<Flex>
@@ -203,6 +176,17 @@ export default function LoginNavbar() {
 								About
 							</Link>
 						</NextLink>
+					</Flex>
+					<Flex align='center'>
+						<Button
+							m={5}
+							colorScheme='red'
+							variant='ghost'
+							_hover={{ bg: '#222222' }}
+							fontSize='2xl'
+							onClick={() => logOut()}>
+							Log Out
+						</Button>
 					</Flex>
 				</Flex>
 			</Flex>

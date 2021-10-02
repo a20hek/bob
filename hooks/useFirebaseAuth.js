@@ -66,7 +66,7 @@ export const useFirebaseAuth = () => {
 	};
 
 	const signInWithEmailAndPassword = (email, password) => {
-		return signInWithEmailAndPassword(auth, email, password).then((response) => {
+		return signInWithEmailAndPassword_(auth, email, password).then((response) => {
 			handleUser(response.user);
 			Router.push('/home');
 		});

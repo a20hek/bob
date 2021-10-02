@@ -75,19 +75,22 @@ export default function Clubspage({ books }) {
 	}, []);
 
 	console.log(result);
-	// const bookclubs = result[0].clubs;
-	// console.log(bookclubs);
+	const bookclubs = result[0].clubs;
+	console.log(bookclubs);
 
-	// useEffect(() => {
-	// 	onAuthStateChanged(auth, (user) => {
-	// 		if (user) {
-	// 			if (bookclubs.includes(id) == true) {
-	// 				setBtncolor('#0EB500');
-	// 				setBtntext('Joined for this club');
-	// 			}
-	// 		}
-	// 	});
-	// }, []);
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				if (result.length > 0) {
+					const bookclubs = result[0].clubs;
+					if (bookclubs.includes(id) == true) {
+						setBtncolor('#0EB500');
+						setBtntext('Joined for this club');
+					}
+				}
+			}
+		});
+	}, []);
 
 	return (
 		<>
