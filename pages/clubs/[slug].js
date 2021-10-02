@@ -48,6 +48,19 @@ export default function Clubspage({ books }) {
 
 	const toast = useToast();
 
+	const handleClick = () => {
+		setBtncolor('#0EB500');
+		setBtntext('Joined for this club');
+		toast({
+			title: 'You have been added to the club',
+			description:
+				'An email regarding your joining info will be sent to you within a few days',
+			status: 'success',
+			duration: 9000,
+			isClosable: true,
+		});
+	};
+
 	function updateClub(id, uid) {
 		const userRef = doc(db, 'users', uid);
 		return updateDoc(userRef, {
@@ -55,39 +68,39 @@ export default function Clubspage({ books }) {
 		});
 	}
 
-	async function Userdata(uid) {
-		const snapshot = await getDocs(query(collection(db, 'users'), where('uid', '==', uid)));
-		const results = [];
-		snapshot.forEach((doc) => {
-			results.push({ id: doc.id, ...doc.data() });
-		});
-		console.log(results);
-		return { results };
-	}
+	// async function Userdata(uid) {
+	// 	const snapshot = await getDocs(query(collection(db, 'users'), where('uid', '==', uid)));
+	// 	const results = [];
+	// 	snapshot.forEach((doc) => {
+	// 		results.push({ id: doc.id, ...doc.data() });
+	// 	});
+	// 	console.log(results);
+	// 	return { results };
+	// }
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
-				Userdata(user.uid).then(({ results }) => setResult(results));
-				console.log(result.length);
+				// Userdata(user.uid).then(({ results }) => setResult(results));
+				// console.log(result.length);
 			}
 		});
 	}, []);
 
-	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				if (result.length != 0) {
-					console.log(result[0].clubs);
-					if (result[0].clubs.includes({ id }) == true) {
-						setBtncolor('#0EB500');
-						setBtntext('Joined for this club');
-					}
-				}
-			}
-		});
-	}, []);
+	// useEffect(() => {
+	// 	onAuthStateChanged(auth, (user) => {
+	// 		if (user) {
+	// 			if (result.length != 0) {
+	// 				console.log(result[0].clubs);
+	// 				if (result[0].clubs.includes({ id }) == true) {
+	// 					setBtncolor('#0EB500');
+	// 					setBtntext('Joined for this club');
+	// 				}
+	// 			}
+	// 		}
+	// 	});
+	// }, []);
 
 	return (
 		<>
@@ -156,7 +169,7 @@ export default function Clubspage({ books }) {
 								_hover={{ bg: '#886FB4' }}
 								mt='24px'
 								mb='24px'
-								onClick={() => updateClub(id, uid)}>
+								onClick={() => updateClub(id, uid).then(() => handleClick())}>
 								{btntext}
 							</Button>
 						</Center>
@@ -206,7 +219,8 @@ export default function Clubspage({ books }) {
 								textColor='#ffffff'
 								_hover={{ bg: '#886FB4' }}
 								mt='24px'
-								mb='24px'>
+								mb='24px'
+								onClick={() => updateClub(id, uid).then(() => handleClick())}>
 								{btntext}
 							</Button>
 						</Center>
