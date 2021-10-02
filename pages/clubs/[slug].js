@@ -70,6 +70,7 @@ export default function Clubspage({ books }) {
 			if (user) {
 				setUid(user.uid);
 				Userdata(user.uid).then(({ results }) => setResult(results));
+				console.log(result.length);
 			}
 		});
 	}, []);
