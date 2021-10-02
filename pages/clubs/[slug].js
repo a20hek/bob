@@ -41,7 +41,7 @@ export async function getStaticProps({ params }) {
 
 export default function Clubspage({ books }) {
 	const id = books.fields.id;
-	const [result, setResult] = useState([]);
+	const [btnhover, setBtnhover] = useState('#886FB4');
 	const [uid, setUid] = useState(undefined);
 	const [btncolor, setBtncolor] = useState('#635280');
 	const [btntext, setBtntext] = useState('Join for this book');
@@ -51,12 +51,13 @@ export default function Clubspage({ books }) {
 	const handleClick = () => {
 		setBtncolor('#0EB500');
 		setBtntext('Joined for this club');
+		setBtnhover('#13DA01');
 		toast({
 			title: 'You have been added to the club',
 			description:
 				'An email regarding your joining info will be sent to you within a few days',
 			status: 'success',
-			duration: 9000,
+			duration: 5000,
 			isClosable: true,
 		});
 	};
@@ -68,39 +69,13 @@ export default function Clubspage({ books }) {
 		});
 	}
 
-	// async function Userdata(uid) {
-	// 	const snapshot = await getDocs(query(collection(db, 'users'), where('uid', '==', uid)));
-	// 	const results = [];
-	// 	snapshot.forEach((doc) => {
-	// 		results.push({ id: doc.id, ...doc.data() });
-	// 	});
-	// 	console.log(results);
-	// 	return { results };
-	// }
-
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUid(user.uid);
-				// Userdata(user.uid).then(({ results }) => setResult(results));
-				// console.log(result.length);
 			}
 		});
 	}, []);
-
-	// useEffect(() => {
-	// 	onAuthStateChanged(auth, (user) => {
-	// 		if (user) {
-	// 			if (result.length != 0) {
-	// 				console.log(result[0].clubs);
-	// 				if (result[0].clubs.includes({ id }) == true) {
-	// 					setBtncolor('#0EB500');
-	// 					setBtntext('Joined for this club');
-	// 				}
-	// 			}
-	// 		}
-	// 	});
-	// }, []);
 
 	return (
 		<>
@@ -166,7 +141,7 @@ export default function Clubspage({ books }) {
 							<Button
 								bgColor={btncolor}
 								textColor='#ffffff'
-								_hover={{ bg: '#886FB4' }}
+								_hover={{ bg: btnhover }}
 								mt='24px'
 								mb='24px'
 								onClick={() => updateClub(id, uid).then(() => handleClick())}>
@@ -217,7 +192,7 @@ export default function Clubspage({ books }) {
 								ml='5%'
 								bgColor={btncolor}
 								textColor='#ffffff'
-								_hover={{ bg: '#886FB4' }}
+								_hover={{ bg: btnhover }}
 								mt='24px'
 								mb='24px'
 								onClick={() => updateClub(id, uid).then(() => handleClick())}>
