@@ -6,6 +6,7 @@ import {
 	signOut,
 	GoogleAuthProvider,
 	signInWithPopup,
+	getAdditionalUserInfo,
 } from 'firebase/auth';
 
 import { doc, setDoc } from 'firebase/firestore';
@@ -65,17 +66,19 @@ export const useFirebaseAuth = () => {
 	};
 
 	const signInWithEmailAndPassword = (email, password) => {
-		return signInWithEmailAndPassword_(auth, email, password).then((response) => {
+		return signInWithEmailAndPassword(auth, email, password).then((response) => {
 			handleUser(response.user);
 			Router.push('/home');
 		});
 	};
 
 	const signInWithGoogle = () => {
-		return signInWithPopup(new GoogleAuthProvider()).then((response) => {
+		const googleProvider = new GoogleAuthProvider();
+		return signInWithPopup(auth, googleProvider).then((response) => {
 			handleUser(response.user);
-
-			if (auth.UserMetadata.creationTime === auth.UserMetadata.lastSignInTime) {
+			const additionalUserInfo = getAdditionalUserInfo(response);
+			const isNewUser = additionalUserInfo.isNewUser;
+			if (isNewUser) {
 				Router.push('/registration');
 			} else {
 				Router.push('/home');
