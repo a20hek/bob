@@ -116,7 +116,6 @@ const formatUser = async (user) => {
 		uid: user.uid,
 		email: user.email,
 		provider: user.providerData[0].providerId,
-		photoUrl: user.photoURL,
 		token,
 	};
 };
