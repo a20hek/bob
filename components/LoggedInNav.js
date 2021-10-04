@@ -23,7 +23,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 
 import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
 
-export default function LoginNavbar() {
+export default function LoggedInNav() {
 	const { logOut } = useFirebaseAuth();
 
 	const [result, setResult] = useState([]);

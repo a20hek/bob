@@ -4,8 +4,11 @@ import NextLink from 'next/link';
 import { Box, Flex, Heading, Text, Link } from '@chakra-ui/react';
 import Footer from '../components/Footer';
 import Head from 'next/head';
+import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
+import LoggedInNav from '../components/LoggedInNav';
 
 export default function About() {
+	const { authenticated } = useFirebaseAuth();
 	return (
 		<>
 			<Head>
@@ -13,7 +16,7 @@ export default function About() {
 			</Head>
 			<Box>
 				<Box mr='5%' ml='5%'>
-					<Navbar />
+					{authenticated ? <LoggedInNav /> : <Navbar />}
 				</Box>
 				<br />
 				<Box bgColor='#600F0F' height={{ base: '100px', md: '120px', lg: '120px' }}>
