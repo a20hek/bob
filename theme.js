@@ -9,7 +9,7 @@ const breakpoints = createBreakpoints({
 
 const theme = extendTheme({
 	fonts: {
-		heading: 'Inter',
+		heading: 'Playfair Display',
 		body: 'Poppins',
 	},
 });
