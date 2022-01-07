@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import Head from 'next/head';
 import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
 import NotLoggedin from '../components/NotLoggedin';
-import { db, auth } from '../lib/firebase';
+
 import { Box, Flex, Heading, Text, Center, Image, Button } from '@chakra-ui/react';
 
 export async function getStaticProps() {
