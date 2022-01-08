@@ -192,7 +192,7 @@ function LandingPage() {
 					<br />
 
 					<Heading fontSize={{ base: '32px', sm: '36px', md: '42px', lg: '42px' }}>
-						Books selected for the Oct-Nov-Dec session :
+						Books selected for the Jan-Feb-March session :
 					</Heading>
 					<br />
 					<br />
@@ -215,24 +215,56 @@ function LandingPage() {
 				<Box mr='5%' ml='5%'>
 					<Center>
 						<SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing={10}>
-							<Card genre='Fiction' color='#E7A7AA' id='fiction' />
 							<Card
-								genre='Short Story Collection '
+								genre='Fantasy - Mythology - Retellings'
+								color='#E7A7AA'
+								id='fantasy-myth'
+							/>
+							<Card
+								genre='Fiction - Translated from Marathi'
 								color='#99D2EF'
-								id='short-story'
+								id='fiction-marathi'
 							/>
-							<Card genre='Fantasy' color='#8FBE8E' id='fantasy' />
-							<Card genre='Graphic Novel' color='#FDD594' id='graphic' />
-							<Card genre='Socio Political' color='#B7EAC8' id='socio-political' />
-							<Card genre='Technology' color='#ECA892' id='technology' />
 							<Card
-								genre='Historical Fiction + Murder Mystery'
-								color='#EDC0EE'
-								id='historical-fiction'
+								genre='Non Fiction - Climate Change'
+								color='#8FBE8E'
+								id='non-fiction-climate'
 							/>
-							<Card genre='Food' color='#FFD8D8' id='food' />
-							<Card genre='Poetry Collection' color='#BBB3DC' id='poetry' />
-							<Card genre='Romantic YA' color='#81FFD1' id='romantic-ya' />
+							<Card
+								genre='Short Story Collection - Based in Manipur'
+								color='#FDD594'
+								id='short-story-manipur'
+							/>
+							<Card
+								genre='Fiction - Translated from Tamil'
+								color='#B7EAC8'
+								id='fiction-tamil'
+							/>
+							<Card
+								genre='Non Fiction - The Youth and Tech'
+								color='#ECA892'
+								id='non-fictoin-youth-tech'
+							/>
+							<Card
+								genre='Memoir - Based in Kashmir'
+								color='#EDC0EE'
+								id='memoir-kashmir'
+							/>
+							<Card
+								genre='Fiction - Based in Rajasthan'
+								color='#FFD8D8'
+								id='fiction-rajasthan'
+							/>
+							<Card
+								genre='Short Story Collection - Translated from Portuguese - Based in Goa'
+								color='#BBB3DC'
+								id='short-story-goa'
+							/>
+							<Card
+								genre='Fiction - Translated from Bengali'
+								color='#81FFD1'
+								id='fiction-bengali'
+							/>
 						</SimpleGrid>
 					</Center>
 				</Box>
