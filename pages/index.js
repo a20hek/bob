@@ -256,7 +256,7 @@ function LandingPage() {
 								id='fiction-rajasthan'
 							/>
 							<Card
-								genre='Short Story Collection - Translated from Portuguese - Based in Goa'
+								genre='Short Story Collection - Based in Goa'
 								color='#BBB3DC'
 								id='short-story-goa'
 							/>
