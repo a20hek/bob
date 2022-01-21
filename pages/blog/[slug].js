@@ -49,6 +49,14 @@ export default function Blogpage({ blogpost }) {
 				return [...children, index > 0 && <br key={index} />, textSegment];
 			}, []);
 		},
+		renderNode: {
+			'embedded-asset-block': (node) => (
+				<Image
+					src={node.data?.target?.fields?.file?.url}
+					alt={node.data?.target?.fields?.title}
+				/>
+			),
+		},
 	};
 	return (
 		<>
