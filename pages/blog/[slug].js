@@ -65,9 +65,12 @@ export default function Blogpage({ blogpost }) {
 			<Box mr='5%' ml='5%'>
 				{authenticated ? <LoggedInNav /> : <Navbar />}
 			</Box>
-			<br />
-			<br />
-			<Box pr='15%' pl='15%' w='100%' h='auto'>
+			<Box
+				pt='2%'
+				pr={{ base: '10%', md: '15%', lg: '15%' }}
+				pl={{ base: '10%', md: '15%', lg: '15%' }}
+				w='100%'
+				h='auto'>
 				<Heading fontSize='5xl'>{blogpost.fields.title}</Heading>
 				<br />
 				<Text fontWeight='500' fontSize='2xl' color='6c6c6c' opacity='0.8'>
@@ -88,7 +91,12 @@ export default function Blogpage({ blogpost }) {
 				pb={2}
 			/>
 
-			<Box pr='15%' pl='15%' w='100%' h='auto' mb='60px'>
+			<Box
+				pr={{ base: '10%', md: '15%', lg: '15%' }}
+				pl={{ base: '10%', md: '15%', lg: '15%' }}
+				w='100%'
+				h='auto'
+				mb='60px'>
 				<Text fontSize='lg'>
 					{documentToReactComponents(blogpost.fields.content, options)}
 				</Text>
