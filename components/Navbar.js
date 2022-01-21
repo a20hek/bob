@@ -15,6 +15,7 @@ import {
 	ModalBody,
 	ModalFooter,
 	CloseButton,
+	Center,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { HamburgerIcon } from '@chakra-ui/icons';
@@ -26,11 +27,16 @@ export default function Navbar() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<Box>
-			<Flex justifyContent='space-between' h='70px'>
+			<Flex justifyContent='space-between' h='80px'>
 				<Flex align='center' display={{ base: 'none', sm: 'none', md: 'none', lg: 'flex' }}>
 					<NextLink href='/month' passHref>
-						<Link fontSize='16px' fontWeight='500' mr='60px'>
+						<Link fontSize='16px' fontWeight='500' mr='30px'>
 							This Month&apos;s Books
+						</Link>
+					</NextLink>
+					<NextLink href='/blog' passHref>
+						<Link fontSize='16px' fontWeight='500' mr='30px'>
+							Blog
 						</Link>
 					</NextLink>
 					<NextLink href='/about' passHref>
@@ -45,7 +51,7 @@ export default function Navbar() {
 							src='/logo.svg'
 							alt='bonding over bindings'
 							cursor='pointer'
-							h='30px'
+							h={{ base: '24px', md: '30px', lg: '30px' }}
 						/>
 					</NextLink>
 				</Flex>

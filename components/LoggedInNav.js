@@ -49,6 +49,11 @@ export default function LoggedInNav() {
 		<Box>
 			<Flex justifyContent='space-between' h='80px'>
 				<Flex align='center' display={{ base: 'none', sm: 'none', md: 'none', lg: 'flex' }}>
+					<NextLink href='/blog' passHref>
+						<Link fontSize='16px' fontWeight='500' mr='60px'>
+							Blog
+						</Link>
+					</NextLink>
 					<NextLink href='/about' passHref>
 						<Link fontSize='16px' fontWeight='500'>
 							About
@@ -159,6 +164,13 @@ export default function LoggedInNav() {
 								</Text>
 							</Flex>
 						)}
+					</Flex>
+					<Flex>
+						<NextLink href='/blog' passHref>
+							<Link fontSize='2xl' m={5} color='white'>
+								Blog
+							</Link>
+						</NextLink>
 					</Flex>
 					<Flex>
 						<NextLink href='/about' passHref>
