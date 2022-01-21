@@ -138,6 +138,13 @@ export default function Navbar() {
 						</NextLink>
 					</Flex>
 					<Flex>
+						<NextLink href='/blog' passHref>
+							<Link m={5} color='white' fontSize='2xl'>
+								Blog
+							</Link>
+						</NextLink>
+					</Flex>
+					<Flex>
 						<NextLink href='/about' passHref>
 							<Link fontSize='2xl' m={5} color='white'>
 								About
