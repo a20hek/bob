@@ -43,6 +43,9 @@ export async function getStaticProps({ params }) {
 
 export default function Blogpage({ blogpost }) {
 	const { authenticated } = useFirebaseAuth();
+	const returnImg = (node) => (
+		<Image src={node.data?.target?.fields?.file?.url} alt={node.data?.target?.fields?.title} />
+	);
 	const options = {
 		renderText: (text) => {
 			return text.split('\n').reduce((children, textSegment, index) => {
@@ -50,14 +53,10 @@ export default function Blogpage({ blogpost }) {
 			}, []);
 		},
 		renderNode: {
-			'embedded-asset-block': (node) => (
-				<Image
-					src={node.data?.target?.fields?.file?.url}
-					alt={node.data?.target?.fields?.title}
-				/>
-			),
+			'embedded-asset-block': returnImg,
 		},
 	};
+
 	return (
 		<>
 			<Head>
